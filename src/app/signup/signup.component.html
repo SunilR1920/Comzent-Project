@@ -1,0 +1,70 @@
+<div class="body">
+    <img src="../../../assets/galexy.jpg" alt="bgImg" class="bgImg">
+    <div class="wrapper">
+        <form [formGroup]='signupForm' (ngSubmit)="PostData(signupForm)">
+            <h2>Sign Up</h2>
+            <div class="input-field">
+                <div class="partitionSection">
+                    <app-inputfield type="text" [FormControlName]="firstNameValue" [placeholder]="firstNamePlaceholder"></app-inputfield>
+                    <app-inputfield type="text" [FormControlName]="lastNameValue" [placeholder]="lastNamePlaceholder"></app-inputfield>
+                </div>
+            </div>
+            <div class="input-field">
+                <app-inputfield type="email" [FormControlName]="emailValue" [placeholder]="emailPlaceholder"></app-inputfield>
+            </div>
+            <div class="input-field">
+                <app-inputfield type="text" [FormControlName]="mobileNoValue" [placeholder]="mobileNoPlaceholder"></app-inputfield>
+            </div>
+            <div class="input-field">
+                <div class="partitionSection">
+                    <app-inputfield [type]="type" [FormControlName]="gender" value="male" class="lx"></app-inputfield><label
+                        style="color: #fff;font-weight: bold;">{{forMaleGender}}</label>
+                    <app-inputfield [type]="type" [FormControlName]="gender" value="female" class="ls"></app-inputfield><label
+                        style="color: #fff;font-weight: bold;">{{forFemaleGender}}</label>
+                </div>
+            </div>
+            <div class="input-fieldlessGap">
+                <!-- <app-inputfield  [type]="textaria" [placeholder]="address" style="height: auto;"></app-inputfield> -->
+                <textarea type="text"  FormControlName="addressValue" [placeholder]="addressPlaceholder" (click)="showAddress()"
+                    (input)="onAddressTextareaInput($event)" rows="{{addressTextareaRows}}" cols="30"
+                    class="addressTextarea"></textarea>
+            </div>
+            <div *ngIf="displayAddress">
+                <div class="input-fieldlessGap">
+                    <div class="partitionSection">
+                        <app-inputfield type="text" [FormControlName]="cityValue" [placeholder]="cityPlaceholder"></app-inputfield>
+                        <app-inputfield type="text" [FormControlName]="regionValue" [placeholder]="regionPlaceholder"></app-inputfield>
+                    </div>
+                </div>
+                <div class="input-fieldlessGap">
+                    <div class="partitionSection">
+                        <app-inputfield type="text" [FormControlName]="pincodeValue" [placeholder]="pincodePlaceholder"></app-inputfield>
+                        <app-inputfield type="text" [FormControlName]="countreyValue" [placeholder]="countryPlaceholder"></app-inputfield>
+                    </div>
+                </div>
+            </div>
+            <div class="input-field">
+                <div class="input-fieldlessGap">
+                    <app-inputfield type="text" [FormControlName]="useridValue" [placeholder]="useridPlaceholder"></app-inputfield>
+                </div>
+                <div class="input-fieldlessGap">
+                    <app-inputfield type="text" [FormControlName]="passwordValue" [placeholder]="passwordPlaceholder"></app-inputfield>
+                </div>
+                <div class="input-fieldlessGap">
+                    <app-inputfield type="text" [FormControlName]="conPasswordValue" [placeholder]="conPasswordPlaceholder"></app-inputfield>
+                </div>
+            </div>
+            <div>
+                <select FormControlName="roleValue" class="selectRole">
+                    <option value="">Select your Role</option>
+                    <option value="">Admin</option>
+                    <option value="">Developer</option>
+                    <option value="">Client</option>
+                </select>
+            </div>
+            <div class="input-field">
+                <app-buttoncomp [disabled]="!signupForm.valid" [value]="value" [buttonTitle]="buttonTitle"></app-buttoncomp>
+            </div>
+        </form>
+    </div>
+</div>

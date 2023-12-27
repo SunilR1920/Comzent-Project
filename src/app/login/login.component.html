@@ -1,0 +1,118 @@
+<div class="body">
+  <div class="wrapper">
+
+    <div class="form-container">
+      <form class="slide-controls">
+        <input type="radio" name="slide" id="login" class="log-in" (click)="showLogin()">
+        <label for="login" class="slide login">Login</label>
+        <input type="radio" name="slide" id="signup" class="sign-up" (click)="showSignup()">
+        <label for="signup" class="slide signup">Signup</label>
+        <div class="slider-tab"></div>
+        </form>
+      <div class="form-inner">
+        <form [formGroup]="loginForm" *ngIf="showPage== 'login'" (ngSubmit)="PostLoginForm(loginForm)" method="post" class="login">
+          <h2 class="title">Login</h2>
+          <div class="input-field">
+            <app-inputfield [FormControlName]="userIdValue" [placeholder]="userIdPlaceholder"></app-inputfield>
+          </div>
+          <br />
+          <span style="color: red;" *ngIf="userid && userid.invalid && userid.touched">* Please Enter User Id</span>
+          <div class="input-field">
+            <app-inputfield [FormControlName]="passwordValue" [placeholder]="passwordPlaceholder"></app-inputfield>
+          </div>
+          <div class="forget">
+            <label for="remember">
+              <input id="check" type="checkbox" class="check" checked>
+              <label for="check"><span class="icon"></span> Keep me Signed in</label>
+            </label>
+            <a>Forgot password?</a>
+          </div>
+          <app-buttoncomp [disabled]="!loginForm.valid" [buttonTitle]="buttonTitle"></app-buttoncomp>
+          <div class="register">
+            <p>Don't have an account? <a (click)="showSignup()">Register</a></p>
+          </div>
+        </form>
+
+        
+          <form [formGroup]='signupForm' *ngIf="showPage== 'Signup'" (ngSubmit)="PostData(signupForm)" method="post" class="signup">
+            <h2 class="title">Sign Up</h2>
+            <div class="input-field">
+              <div class="partitionSection">
+                <app-inputfield type="text" [FormControlName]="firstNameValue"
+                  [placeholder]="firstNamePlaceholder"></app-inputfield>
+                <app-inputfield type="text" [FormControlName]="lastNameValue"
+                  [placeholder]="lastNamePlaceholder"></app-inputfield>
+              </div>
+            </div>
+            <div class="input-field">
+              <app-inputfield type="email" [FormControlName]="emailValue"
+                [placeholder]="emailPlaceholder"></app-inputfield>
+            </div>
+            <div class="input-field">
+              <app-inputfield type="text" [FormControlName]="mobileNoValue"
+                [placeholder]="mobileNoPlaceholder"></app-inputfield>
+            </div>
+            <div class="input-field">
+              <div class="partitionSection">
+                <app-inputfield [type]="typeValue" [FormControlName]="gender" value="male"
+                  class="lx"></app-inputfield><label style="color: #fff;font-weight: bold;">{{forMaleGender}}</label>
+                <app-inputfield [type]="typeValue" [FormControlName]="gender" value="female"
+                  class="ls"></app-inputfield><label style="color: #fff;font-weight: bold;">{{forFemaleGender}}</label>
+              </div>
+            </div>
+            <div class="input-fieldlessGap">
+              <textarea type="text" FormControlName="addressValue" [placeholder]="addressPlaceholder"
+                (click)="showAddress()" (input)="onAddressTextareaInput($event)" rows="{{addressTextareaRows}}"
+                cols="30" class="addressTextarea"></textarea>
+            </div>
+            <div *ngIf="displayAddress">
+              <div class="input-fieldlessGap">
+                <div class="partitionSection">
+                  <app-inputfield type="text" [FormControlName]="cityValue"
+                    [placeholder]="cityPlaceholder"></app-inputfield>
+                  <app-inputfield type="text" [FormControlName]="regionValue"
+                    [placeholder]="regionPlaceholder"></app-inputfield>
+                </div>
+              </div>
+              <div class="input-fieldlessGap">
+                <div class="partitionSection">
+                  <app-inputfield type="text" [FormControlName]="pincodeValue"
+                    [placeholder]="pincodePlaceholder"></app-inputfield>
+                  <app-inputfield type="text" [FormControlName]="countreyValue"
+                    [placeholder]="countryPlaceholder"></app-inputfield>
+                </div>
+              </div>
+            </div>
+            <div class="input-field">
+              <div class="input-fieldlessGap">
+                <app-inputfield type="text" [FormControlName]="useridValue"
+                  [placeholder]="useridPlaceholder"></app-inputfield>
+              </div>
+              <div class="input-fieldlessGap">
+                <app-inputfield type="text" [FormControlName]="passwordValueS"
+                  [placeholder]="passwordPlaceholderS"></app-inputfield>
+              </div>
+              <div class="input-fieldlessGap">
+                <app-inputfield type="text" [FormControlName]="conPasswordValue"
+                  [placeholder]="conPasswordPlaceholder"></app-inputfield>
+              </div>
+            </div>
+            <div class="input-fieldlessGap">
+              <select FormControlName="roleValue" class="selectRole">
+                <option value="">Select your Role</option>
+                <option value="">Admin</option>
+                <option value="">Developer</option>
+                <option value="">Client</option>
+              </select>
+            </div>
+            <div class="input-field">
+              <app-buttoncomp [disabled]="!signupForm.valid" [value]="value"
+                [buttonTitle]="buttonTitleS"></app-buttoncomp>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+<router-outlet></router-outlet>
